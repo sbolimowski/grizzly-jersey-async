@@ -2,6 +2,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
+import pl.org.async.TaskExecutor;
 import pl.org.async.AsyncResource;
 import pl.org.async.FacebookService;
 import pl.org.async.GitHubService;
@@ -28,9 +29,10 @@ public class App {
             protected void configure() {
                 bind(FacebookService.class).to(FacebookService.class);
                 bind(GitHubService.class).to(GitHubService.class);
-
+                bind(TaskExecutor.class).to(TaskExecutor.class);
             }
         });
         return resourceConfig;
     }
+
 }

@@ -27,19 +27,21 @@ public class AsyncResource {
     @Inject
     private GitHubService gitHubService;
 
+    @Inject
+    private TaskExecutor executor;
+
     @GET
     @Path("/async/{user}")
     @Produces(MediaType.APPLICATION_JSON)
     public void userInfoAsync(@Suspended AsyncResponse asyncResponse, @PathParam("user") String user) {
-        CompletableFuture<GitHubInfo> gitHubInfoFuture = toCompletable(gitHubService.getInfoAsync(user));
-        CompletableFuture<FacebookInfo> facebookInfoFuture = toCompletable(facebookService.getInfoAsync(user));
+        CompletableFuture<GitHubInfo> gitHubInfoFuture = toCompletable(gitHubService.getInfoAsync(user), executor);
+        CompletableFuture<FacebookInfo> facebookInfoFuture = toCompletable(facebookService.getInfoAsync(user), executor);
 
         gitHubInfoFuture
                 .thenCombine(facebookInfoFuture, (g, f) -> new UserInfo(f, g))
-                .thenAccept((info) -> asyncResponse.resume(info))
-                .join();
+                .thenAccept((info) -> asyncResponse.resume(info));
 
-        asyncResponse.setTimeout(1000, TimeUnit.MILLISECONDS);
+        asyncResponse.setTimeout(10000, TimeUnit.MILLISECONDS);
         asyncResponse.setTimeoutHandler(
                 ar -> ar.resume(Response.status(Response.Status.SERVICE_UNAVAILABLE).entity("Operation timed out").build()));
     }
