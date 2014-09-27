@@ -8,7 +8,6 @@ import java.util.concurrent.Future;
 public class Futures {
 
     public static <T> CompletableFuture<T> toCompletable(Future<T> future) {
-
         return CompletableFuture.supplyAsync(() -> {
             try {
                 return future.get();
@@ -17,8 +16,9 @@ public class Futures {
             }
         });
     }
-    public static <T> CompletableFuture<T> toCompletable(Future<T> future, Executor executor) {
 
+
+    public static <T> CompletableFuture<T> toCompletable(Future<T> future, Executor executor) {
         return CompletableFuture.supplyAsync(() -> {
             try {
                 return future.get();
