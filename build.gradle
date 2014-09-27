@@ -1,0 +1,26 @@
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin:'application'
+
+sourceCompatibility = 1.8
+mainClassName = "App"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile "org.glassfish.jersey.containers:jersey-container-servlet:+"
+    compile "org.glassfish.jersey.media:jersey-media-json-jackson:+"
+    compile "com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:+"
+    compile "org.glassfish.jersey.containers:jersey-container-grizzly2-http:+"
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
+
+run{
+    standardInput = System.in
+}
+
