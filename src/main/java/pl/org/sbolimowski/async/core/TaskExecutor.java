@@ -1,4 +1,4 @@
-package pl.org.async;
+package pl.org.sbolimowski.async.core;
 
 import org.jvnet.hk2.annotations.Service;
 

@@ -2,10 +2,9 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-import pl.org.async.TaskExecutor;
-import pl.org.async.AsyncResource;
-import pl.org.async.FacebookService;
-import pl.org.async.GitHubService;
+import pl.org.sbolimowski.async.core.TaskExecutor;
+import pl.org.sbolimowski.async.core.FacebookService;
+import pl.org.sbolimowski.async.core.GitHubService;
 
 import java.io.IOException;
 import java.net.URI;
@@ -23,7 +22,7 @@ public class App {
 
     public static ResourceConfig create() {
         ResourceConfig resourceConfig = new ResourceConfig();
-        resourceConfig.register(AsyncResource.class);
+        resourceConfig.packages("pl.org.sbolimowski.async.api");
         resourceConfig.register(new AbstractBinder() {
             @Override
             protected void configure() {

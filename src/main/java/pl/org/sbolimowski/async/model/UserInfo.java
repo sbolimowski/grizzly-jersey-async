@@ -1,4 +1,4 @@
-package pl.org.async.model;
+package pl.org.sbolimowski.async.model;
 
 public class UserInfo {
     private final GitHubInfo gitHubInfo;

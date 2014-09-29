@@ -1,4 +1,4 @@
-package pl.org.async;
+package pl.org.sbolimowski.async.core;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
