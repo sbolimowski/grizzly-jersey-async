@@ -2,7 +2,7 @@ import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 import org.glassfish.jersey.server.ResourceConfig;
-import pl.org.sbolimowski.async.core.TaskExecutor;
+import pl.org.sbolimowski.async.utils.TaskExecutor;
 import pl.org.sbolimowski.async.core.FacebookService;
 import pl.org.sbolimowski.async.core.GitHubService;
 
