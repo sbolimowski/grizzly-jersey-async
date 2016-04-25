@@ -2,5 +2,6 @@ Sample REST service demonstrating asynchronous processing build on Jersey + Griz
 
 Run with:
 
+```
 	gradle run
-
+```
